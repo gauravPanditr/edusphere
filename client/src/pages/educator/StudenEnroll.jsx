@@ -8,4 +8,4 @@ const StudenEnroll = () => {
   )
 }
 
-export default StudenEnroll
+export default StudenEnroll;
