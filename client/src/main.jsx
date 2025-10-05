@@ -13,11 +13,18 @@ import Dashboard from './pages/educator/Dashboard.jsx'
 import AddCourse from './pages/educator/AddCourse.jsx'
 import MyCourse from './pages/educator/MyCourse.jsx'
 import StudenEnroll from './pages/educator/StudenEnroll.jsx'
+import {ClerkProvider} from '@clerk/clerk-react'
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error('Missing Publishable Key')
+}
 
 createRoot(document.getElementById('root')).render(
+  
   <StrictMode>
     <BrowserRouter>
-      
+      <ClerkProvider>
         <Routes>
           {/* Default redirect to /home */}
           <Route path="/" element={<Navigate to="/home" />} />
@@ -35,7 +42,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="student-enrolled" element={<StudenEnroll />} />
           </Route>
         </Routes>
-    
+    </ClerkProvider>
     </BrowserRouter>
   </StrictMode>
 )
