@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')).render(
   
   <StrictMode>
     <BrowserRouter>
-      <ClerkProvider>
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
         <Routes>
           {/* Default redirect to /home */}
           <Route path="/" element={<Navigate to="/home" />} />
