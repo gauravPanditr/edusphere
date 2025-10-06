@@ -21,28 +21,30 @@ if (!PUBLISHABLE_KEY) {
 }
 
 createRoot(document.getElementById('root')).render(
-  
   <StrictMode>
-    <BrowserRouter>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
-        <Routes>
-          {/* Default redirect to /home */}
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/course-list" element={<CourseList />} />
-          <Route path="/course/:id" element={<CourseDetails />} />
-          <Route path="/my-enrollment" element={<MyEnrollment />} />
-          <Route path="/player/:courseId" element={<MyEnrollment />} />
-          <Route path="/loading/:path" element={<MyEnrollment />} />
-             <Route path="/educator" element={<Educator />}>
-            <Route index element={<Dashboard />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="add-course" element={<AddCourse />} />
-            <Route path="my-courses" element={<MyCourse />} />
-            <Route path="student-enrolled" element={<StudenEnroll />} />
-          </Route>
-        </Routes>
-    </ClerkProvider>
-    </BrowserRouter>
+    <AppContextProvider>
+      <BrowserRouter>
+        <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/course-list" element={<CourseList />} />
+            <Route path="/course/:id" element={<CourseDetails />} />
+            <Route path="/my-enrollment" element={<MyEnrollment />} />
+            <Route path="/player/:courseId" element={<MyEnrollment />} />
+            <Route path="/loading/:path" element={<MyEnrollment />} />
+            
+            <Route path="/educator" element={<Educator />}>
+              <Route index element={<Dashboard />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="add-course" element={<AddCourse />} />
+              <Route path="my-courses" element={<MyCourse />} />
+              <Route path="student-enrolled" element={<StudenEnroll />} />
+            </Route>
+          </Routes>
+        </ClerkProvider>
+      </BrowserRouter>
+    </AppContextProvider>
   </StrictMode>
 )
+
