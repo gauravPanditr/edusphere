@@ -14,9 +14,10 @@ await connectDB();
 
 // Middlewares
 app.use(cors());
-app.get('/',(res,req)=>{
-   res.send("API working");
+app.get('/', (req, res) => {
+  res.send("API Working");
 });
+
 app.post('/clerk',express.json(),clerkWebhooks);
 
 
