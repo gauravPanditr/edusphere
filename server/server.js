@@ -10,6 +10,7 @@ import {clerkMiddleware}    from "@clerk/express"
 import connectCloudanary from "./configs/cloudanary.js";
 import courseRouter from "./routes/courseRoute.js";
 import userRouter from "./routes/userRoute.js";
+import bodyParser from "body-parser";
 
 // Initialize Express
 const app = express();
