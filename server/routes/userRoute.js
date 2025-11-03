@@ -1,5 +1,5 @@
 import express from "express";
-import { addUserRating, getUserCourseProgress, getUserData, updateUserCourseProgress, userEnrolledCourses } from "../controllers/userController";
+import { addUserRating, getUserCourseProgress, getUserData, updateUserCourseProgress, userEnrolledCourses } from "../controllers/userController.js";
 
 const userRouter=express.Router();
 
