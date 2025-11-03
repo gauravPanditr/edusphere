@@ -1,7 +1,7 @@
 import express from 'express';
-import { addCourse, educatorDashboard, getEducatorCourses, getEnrolledStudentsData, updateRoleToEducator } from '../controllers/educatorController';
-import upload from '../configs/multer';
-import { protectEducator } from '../middlewares/authmiddlewares';
+import { addCourse, educatorDashboard, getEducatorCourses, getEnrolledStudentsData, updateRoleToEducator } from '../controllers/educatorController.js';
+import upload from '../configs/multer.js';
+import { protectEducator } from '../middlewares/authmiddlewares.js';
 
 const educatorRouter=express.Router();
 
