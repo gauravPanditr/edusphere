@@ -1,34 +1,26 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { dummyCourses } from '../assets/assets';
+import React, { createContext, useEffect } from 'react';
+import { useAuth, useUser } from '@clerk/clerk-react';
 
-// Named export of context
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-  const [allCourses, setAllCourses] = useState([]);
-  const currency = import.meta.env.VITE_CURRENCY;
+  const { getToken, isLoaded: authLoaded } = useAuth();
+  const { user, isLoaded: userLoaded } = useUser();
 
   useEffect(() => {
-    // Simulate fetching courses
-    setAllCourses(dummyCourses);
-  }, []);
+    const fetchToken = async () => {
+      try {
+        const token = await getToken();
+        console.log("🔑 Clerk Token:", token);
+      } catch (err) {
+        console.error("❌ Error fetching token:", err);
+      }
+    };
 
-  // Function to calculate rating
-  const calculateRating = (course) => {
-    if (!course.courseRatings || course.courseRatings.length === 0) return 0;
-    const total = course.courseRatings.reduce((acc, r) => acc + r, 0);
-    return total / course.courseRatings.length;
-  };
+    if (authLoaded && userLoaded && user) {
+      fetchToken();
+    }
+  }, [authLoaded, userLoaded, user]);
 
-  const value = {
-    currency,
-    allCourses,
-    calculateRating, // must include this in value
-  };
-
-  return (
-    <AppContext.Provider value={value}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
 };
